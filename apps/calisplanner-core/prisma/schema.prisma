@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int        @id @default(autoincrement())
+  email      String     @unique
+  name       String?
+  activities Activity[]
+
+  @@map("user")
+}
+
+model Activity {
+  id      Int     @id @default(autoincrement())
+  title   String
+  content String
+  is_private Boolean @default(false)
+  user    User    @relation(fields: [user_id], references: [id])
+  user_id  Int
+
+  @@map("activity")
+}
