@@ -1,7 +1,8 @@
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { notFound } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/start";
-import { prisma } from "~/repository";
+import { prisma } from "../config/prisma-client";
+import { createActivitySchema } from "./activity-schema";
 
 export const createActivity = createServerFn({ method: "POST" })
   .validator((data: unknown) => {
@@ -16,12 +17,11 @@ export const createActivity = createServerFn({ method: "POST" })
       throw Error("Bad Request");
     }
 
-    return {
-      title: title.toString(),
-      content: content.toString(),
-      is_private: privateActivity === "on",
-      user_id: 1,
-    };
+    return createActivitySchema.parse({
+      title,
+      content,
+      privateActivity,
+    });
   })
   .handler(async ({ data }) => {
     const saved = await prisma.activity.create({

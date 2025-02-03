@@ -1,6 +1,6 @@
 import { Button, Flex, Stack, Text } from "@mantine/core";
 import { Link, useParams, useRouter } from "@tanstack/react-router";
-import { deleteActivity } from "~/api/server";
+import { deleteActivity } from "~/server";
 import { Route } from "~/routes/activities.$activityId";
 
 export const ActivityPage = () => {

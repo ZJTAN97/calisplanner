@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { findOneActivity } from "~/api/server";
+import { findOneActivity } from "~/server";
 import { EditActivityPage } from "~/pages";
 
 export const Route = createFileRoute("/activities/$activityId_/edit")({

@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { createServerFn } from "@tanstack/start";
-import { prisma } from "~/repository";
-
+import { prisma } from "../config/prisma-client";
 
 export const findAllUsers = createServerFn({ method: "GET" }).handler(
   async ({ data }) => {

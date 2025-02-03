@@ -8,7 +8,7 @@ import {
 } from "@mantine/core";
 import { useRouter } from "@tanstack/react-router";
 import type { FormEvent } from "react";
-import { createActivity } from "~/api/server";
+import { createActivity } from "~/server";
 
 export const NewActivityPage = () => {
   const router = useRouter();

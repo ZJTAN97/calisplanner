@@ -8,7 +8,7 @@ import {
 } from "@mantine/core";
 import { useParams, useRouter } from "@tanstack/react-router";
 import type { FormEvent } from "react";
-import { updateActivity } from "~/api/server";
+import { updateActivity } from "~/server";
 import { Route } from "~/routes/activities.$activityId_.edit";
 
 export const EditActivityPage = () => {
@@ -33,16 +33,19 @@ export const EditActivityPage = () => {
   return (
     <Stack component="form" gap="lg" onSubmit={handleSubmit}>
       <TextInput
+        key={activityId}
         label="Title of Activity"
         name="title"
         defaultValue={existingActivity.title}
       />
       <Textarea
+        key={activityId}
         label="Description"
         name="content"
         defaultValue={existingActivity.content}
       />
       <Checkbox
+        key={activityId}
         label="Private Activity"
         name="privateActivity"
         checked={existingActivity.is_private}
